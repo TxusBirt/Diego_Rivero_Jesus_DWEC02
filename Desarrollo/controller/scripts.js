@@ -6,7 +6,14 @@
 
 'use strict'
 
-console.log('Empieza el programa')
+// ------------------- CLASES------------------------
+class Socio {
+  constructor(id, nombre, apellido) {
+    this.id = id;
+    this.nombre = nombre;
+    this.apellido = apellido;
+  }
+}
 
 // ------------------- VARIABLES GLOBALES ------------------------
 
@@ -20,9 +27,6 @@ const contenedorEscribirSocios = document.getElementById(
 
 // TODO: array para añadir los socios
 var arraySocios = new Array();
-
-
-
 
 // ------------------- FUNCIONES ------------------------
 
@@ -60,12 +64,9 @@ function aniadirSociosInicialesArray (datos) {
   for(let i in datos.socios) {
       arraySocios.push(datos.socios[i]);
     }
- 
 }
-
 /*
     TODO: Metodo para capturar los datos del socio introducidor en el formulario
-
 */
 function capturarDatosSocio () {
   // capturo los datos señalando al elemento correspondiente y capturando su valor
@@ -73,9 +74,7 @@ function capturarDatosSocio () {
   const nombre = datos.get('nombre');
   const apellido= datos.get('apellido');
   //creo el socio
-  let socio = { id : crearID(),
-                nombre: nombre,
-                apellido: apellido};
+  const socio = crearSocio(nombre, apellido);
   // Añado al array
   arraySocios.push(socio);
 }
@@ -87,12 +86,9 @@ TODO:
  */
 function crearSocio (nombre, apellido) {
   // TODO: crear objeto socio
-  const socio = { id : crearID(),
-                  nombre: nombre,
-                  apellido: apellido
-                };
+  const id = crearID();
   // TODO: añadir el objeto al array
-  arraySocios.push(socio);
+  return new Socio(id, nombre, apellido);
 }
 
 /*
@@ -143,7 +139,9 @@ function pintarListaSocios () {
 
 // ------------------- MAIN ------------------------
 
+
+console.log('Empieza el programa');
 // TODO: añadimos los socios iniciales cuando empieza el programa
 cargarSociosJSON ();
 
-console.log('Acaba el programa')
+console.log('Acaba el programa');
